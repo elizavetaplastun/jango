@@ -1,0 +1,53 @@
+{% extends "lesson_1/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="_atr_anchr_scrl"></div>
+<!--блок контент - Лицензии-->
+<div class="baground">
+    <div class="top_space"></div>
+    <div class="main_container_item">
+        <div class="top_space_txt"></div>
+        <div class="main_text_panel">
+            <div class="name_html">О НАС</div>
+            <div class="text_item_html">
+                {{ about_us.0.us|safe }}
+            </div>
+        </div>
+        <div id="expiriens" class="item_html">
+            <div class="name_sec_part">
+                НАШ ОПЫТ
+            </div>
+            <div class="text_item_html">
+                {{ about_us.0.experience|safe }}
+            </div>
+            <div class="img_item_html">
+                <div class="img_imloding">
+                    <img class="sw_img_anton" src="{% static 'lesson_1/img/exper.svg' %}" alt="">
+                </div>
+            </div>
+        </div>
+        <div id="standarts" class="item_html">
+            <div class="name_sec_part">
+                СООТВЕТСВИЕ СТАНДАРТАМ
+            </div>
+            <div class="text_item_html">
+                {{ about_us.0.standards|safe }}
+            </div>
+            <div class="img_item_html">
+                <div class="img_imloding">
+                    <img class="sw_img_anton" src="{% static 'lesson_1/img/standarts.svg' %}" alt="">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock content %}
+
+{% block downscript %}
+{% include 'include/top_space.html' %}
+{% endblock downscript %}

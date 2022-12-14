@@ -1,0 +1,453 @@
+{% extends "lesson_1/base.html" %}
+{% load static %}
+
+{% block title %}
+Demainer - разминирование и отчистка от ВОП
+{% endblock title %}
+
+{% block scripts %}
+<script>
+    function feedbackform_validFILL() {
+        let valid = true;
+
+        if (document.feedbackform.name.value === "" || document.feedbackform.email_phone.value === "" || document.feedbackform.cheki.checked === false) {
+            alert("Пожалуйста заполните форму\nне забудте принять соглашение");
+            valid = false;
+        } else {
+            alert("Ваша заявка отправлена")
+        }
+        return valid
+    }
+</script>
+{% endblock scripts %}
+
+{% block content %}
+
+<div class="main_bg">
+    <!--                слайдер-->
+    <div class="wrapper-mainbg">
+        <div class="slider_container-mainbg">
+            {% for bg in bg_pict %}
+            <div class="wp_roller_it-mainbg slider_item-mainbg">
+                <img class="wp_roller_it_img-mainbg" src="{{ bg.picture.url }}">
+            </div>
+            {% endfor %}
+            <div class="wp_roller_it-mainbg slider_item-mainbg firstClone" id="firstClone">
+                <img class="wp_roller_it_img-mainbg" src="{{ bg_last.0.picture.url }}">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main" id="toTop">
+    <div class="Main_txt">
+        <div class="container_main_txt">
+            <div class="main_txt_items">
+                <div class="Bold_main_txt _main_items">
+                    ОЧИСТКА ТЕРРИТОРИИ ОТ ВЗРЫВООПАСНЫХ ПРЕДМЕТОВ
+                </div>
+                <div class="Sec_main_txt _main_items">
+                    В комплекс работ входит: поиск ВОП, обезвреживание, вывоз обнаруженных ВОП
+                    собственным спецтранспортом на полигон и организация утилизации (уничтожения)
+                </div>
+            </div>
+        </div>
+        <div class="boom_container">
+
+            <a class="botton_container btn_form" style="margin-top: 40px">
+                ОСТАВИТЬ ЗАЯВКУ
+            </a>
+            <div class="boom_img">
+                <img class="boom_img_png" src="{% static 'lesson_1/img/boom.svg' %}" alt="">
+            </div>
+        </div>
+
+    </div>
+    <!--temp_hidden_class-->
+    <div class="form_container_main ">
+        <div class="form_container_child">
+            <div class="form_container_child_fl">
+                <div class="btnarr_open_form">
+                    <img class="img_form btn_form" src="{% static 'lesson_1/img/form_img.png' %}">
+                </div>
+                <div class="wh_form_size">
+                    <form action="feedback/" method="post" class="cbf_forma_" name="feedbackform"
+                          onsubmit="return feedbackform_validFILL()">
+                        {% csrf_token %}
+                        <div class="form_top_text">
+                            ОСТАВЬТЕ ЗАЯВКУ
+                        </div>
+                        <div class="cbf_field">
+                            <input name="name" class="field_inp" type="text" placeholder="Имя" maxlength="100">
+                            <!--                                   minlength="2"-->
+                            <!--                            >-->
+                        </div>
+                        <div class="cbf_field">
+                            <input name="email_phone" class="field_inp" type="text"
+                                   placeholder="Email или телефон"
+                                   maxlength="32"
+                                   minlength="8">
+                        </div>
+                        <div class="cbf_field" style="border: none;    margin-top: 60px;">
+                            <button type="submit" class="bt_bt_send">Отправить</button>
+
+                        </div>
+                        <div class="agree_field_1">
+                            <div class="agree_field">
+                                <div>
+                                    <input name="cheki" type="checkbox" class="cheki_cl">
+                                </div>
+                                <div class="agree_tx">Даю согласи на обработку данных</div>
+                                <!--                               ready: todo: разблокировать кнопку по чекбоксу -->
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="baground">
+    <div class="main_container">
+
+        <div class="top_part">
+            <div class="top_parts top_part_1 top_part1_flex_img height_top_part">
+                <div class="top_part_1_img_cont">
+                    <img class="sw_img_1" src="{% static 'lesson_1/img/item_2.svg' %}">
+                </div>
+            </div>
+            <div class="top_parts top_part_2 height_top_part">
+                <div class="slider_part">
+                    <div class="mt_block_slider">
+
+                        <div class="name_sec_part">
+                            ФОТОГРАФИИ ПРОДЕЛАННЫХ РАБОТ
+                        </div>
+                        <div class="second_high_text">
+                            с подробным описанием и фотографиями
+                        </div>
+                        <div class="photo_roller">
+                            <div class="roller">
+                                <div class="arrow">
+                                    <div class="arrow_img__ ">
+                                        <img class="arrow_img_ ar_hov arrow-left"
+                                             src="{% static 'lesson_1/img/right.svg' %}">
+                                    </div>
+                                </div>
+                                <div class="slider_container_main">
+                                    <div class="slider_track_main">
+                                        {% for lastP in last_posts %}
+                                        <a class="photos im_hov slider_item_mainPost" href="{{lastP.get_absolute_url}}">
+                                            <div class="slider_item_ins">
+
+                                                <div class="slider_item_ins_pict">
+                                                    <img class="slider_item_ins_pict_img" src="{{lastP.poster_img.url}}"
+                                                         alt="">
+                                                </div>
+                                            </div>
+                                        </a>
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+
+
+                                <div class="arrow">
+                                    <div class="arrow_img__">
+                                        <img class="arrow_img_ arrow_right ar_hov"
+                                             src="{% static 'lesson_1/img/left.svg' %}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/Gallery/" class="button_container">
+                            ПОСМОТРЕТЬ ВСЕ
+
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="serv" class="second_part">
+            <div class="top_parts top_part_1">
+
+            </div>
+            <div class="top_parts top_part_2"></div>
+            <div class="absolute_block_txt">
+                <div class="block_txt_position_start _container">
+
+                    <div class="name_sec_part"> НАШИ УСЛУГИ</div>
+                    <div class="second_high_text width">
+                        {{ works_description_main.0.imloding_work|safe }}
+                    </div>
+                    <div class="split_text_txt-items">
+                        <div class="txt_items_list txt_items_list_1 switch_parent">
+                            <div class="switch_txt_item second_part_sw_txt_item activ_cl_sw_txt">РАЗМИНИРОВАНИЕ</div>
+                            <div class="switch_txt_item second_part_sw_txt_item">БУРОВЗРЫВНЫЕ РАБОТЫ</div>
+                            <div class="switch_txt_item second_part_sw_txt_item">СНОС СООРУЖЕНИЙ</div>
+                            <div class="switch_txt_item second_part_sw_txt_item">БЕЗВЗРЫВНОЕ РАЗРУШЕНИЕ</div>
+                            <div class="switch_txt_item second_part_sw_txt_item">ПРОЕКТИРОВАНИЕ БВР</div>
+                        </div>
+                        <div class="txt_items_list txt_items_list_2">
+                            <div class="img_items_list_3_container">
+                                <div class="sw_img_block sec_sw_img_block active_sw_img">
+                                    <img class="sw_img" src="{% static 'lesson_1/img/item_2.svg' %}" alt="">
+                                </div>
+                                <div class="sw_img_block sec_sw_img_block">
+                                    <img class="sw_img" src="{% static 'lesson_1/img/item_3.svg' %}" alt="">
+                                </div>
+                                <div class="sw_img_block sec_sw_img_block">
+                                    <img class="sw_img" src="{% static 'lesson_1/img/item_boom.svg' %}" alt="">
+                                </div>
+                                <div class="sw_img_block sec_sw_img_block">
+                                    <img class="sw_img" src="{% static 'lesson_1/img/item_4.svg' %}" alt="">
+                                </div>
+                                <div class="sw_img_block sec_sw_img_block">
+                                    <img class="sw_img" src="{% static 'lesson_1/img/item_5.svg' %}" alt="">
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="txt_items_list txt_items_list_3">
+                            <div class="txt_items_list_3_container">
+                                <div class="sw_txt_item_ls_3 sec_sw_txt_item_ls_3 active_sw_txt"
+                                     style="background: none;">
+                                    {{ works_description_main.0.demining|safe }}
+                                    <div class="ls3_link_container">
+                                        <a href="/Demining/" class="button_container">
+                                            ПОДРОБНЕЕ
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="sw_txt_item_ls_3 sec_sw_txt_item_ls_3" style="background: none;">
+                                    {{ works_description_main.0.br_work|safe }}
+                                    <div class="ls3_link_container">
+                                        <a href="/Imploding_work/#item_1" class="button_container scrollto">
+                                            ПОДРОБНЕЕ
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="sw_txt_item_ls_3 sec_sw_txt_item_ls_3" style="background: none;">
+                                    {{ works_description_main.0.demolition|safe }}
+                                    <div class="ls3_link_container">
+                                        <a href="/Imploding_work/#item_2" class="button_container scrollto">
+                                            ПОДРОБНЕЕ
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="sw_txt_item_ls_3 sec_sw_txt_item_ls_3" style="background: none;">
+                                    {{ works_description_main.0.explosive_destruction|safe }}
+                                    <div class="ls3_link_container">
+                                        <a href="/Imploding_work/#item_3" class="button_container scrollto">
+                                            ПОДРОБНЕЕ
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="sw_txt_item_ls_3 sec_sw_txt_item_ls_3" style="background: none;">
+                                    {{ works_description_main.0.design|safe }}
+                                    <div class="ls3_link_container">
+                                        <a href="/Imploding_work/#item_4" class="button_container scrollto">
+                                            ПОДРОБНЕЕ
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="lice" class="third_part parts_mt">
+            <div class="licences_contaier">
+                <div class="part_name">
+                    <div class="name_sec_part">
+                        ЛИЦЕНЗИИ И СЕРТИФИКАТЫ
+                    </div>
+                </div>
+                <div class="licences_items_container">
+                    <div class="licences_items">
+                        <!--                        Лагучаяя хуйня-->
+
+
+                        {% for item in license %}
+                        <div class="item_third_container">
+                            <div class="lice_name_thirdPart">{{ item.name }}</div>
+                            <div class="tab_third_part ">
+                                <div class="ithird_part_Innlineflex">
+                                    {% for image in item.pictforlicences_set.all %}
+                                    <div class="ithird_part_InnlineImgBlock">
+                                        <div class="Inline_img_container">
+                                            <img class="lice_img" src="{{ image.pict.url }}" alt="">
+                                        </div>
+                                        <div class="full_page_licences">
+                                            <div class="full_page_img">
+                                                <img src="{{ image.pict.url }}" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="tab_thitd_part_desc">
+                                    {{ item.description|safe }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ab_t" class="f4_part parts_mt">
+
+            <div class="f4_part_block_txt">
+                <div class="block_txt_position_end">
+                    <div class="part_name">
+                        <div class="name_sec_part">О КОМПАНИИ</div>
+                    </div>
+                    <div class="split_text_txt-items f4_split_text_txt-items">
+
+                        <div class="txt_items_list txt_items_list_3 f4_container">
+                            <div id="abouts" class="txt_items_list_3_container f4_container">
+                                <div class="sw_txt_item_ls_3 f4_sw_txt_item_ls_3  active_sw_txt">
+                                    {{ about_us_main.0.equipment|safe }}
+                                    <div class="f4_link_container">
+                                        <a href="/Equipment/" class="button_container scrollto">
+                                            ПОДРОБНЕЕ
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="sw_txt_item_ls_3 f4_sw_txt_item_ls_3">
+                                    {{ about_us_main.0.experience|safe }}
+                                    <div class="f4_link_container">
+                                        <a href="/About_us/#expiriens" class="button_container scrollto">
+                                            ПОДРОБНЕЕ
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="sw_txt_item_ls_3 f4_sw_txt_item_ls_3">
+                                    {{ about_us_main.0.standards|safe }}
+                                    <div class="f4_link_container">
+                                        <a href="/About_us/#standarts" class="button_container scrollto">
+                                            ПОДРОБНЕЕ
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="sw_txt_item_ls_3 f4_sw_txt_item_ls_3">
+                                    {{ about_us_main.0.customers|safe }}
+                                    <div class="f4_link_container">
+                                        <a href="/Clients/" class="button_container scrollto">
+                                            ПОДРОБНЕЕ
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="sw_txt_item_ls_3 f4_sw_txt_item_ls_3">
+                                    {{ about_us_main.0.vacancies|safe }}
+                                    <div class="f4_link_container">
+                                        <a href="/Vacancies/" class="button_container scrollto">
+                                            ПОДРОБНЕЕ
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="txt_items_list txt_items_list_1 switch_parent">
+                            <div class="switch_txt_item f4_switch_txt_item activ_cl_sw_txt">НАШЕ ОБОРУДОВАНИЕ</div>
+                            <div class="switch_txt_item f4_switch_txt_item">НАШ ОПЫТ</div>
+                            <div class="switch_txt_item f4_switch_txt_item">СООТВЕТСВИЕ СТАНДАРТАМ</div>
+                            <div class="switch_txt_item f4_switch_txt_item">ЗАКАЗЧИКИ</div>
+                            <div class="switch_txt_item f4_switch_txt_item">ВАКАНСИИ</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="maps_part parts_mt" id="cntc">
+            <div class="part_name _container">
+                <div class="name_sec_part">
+                    КАК НАС НАЙТИ
+                </div>
+            </div>
+            <div class="map_container _container">
+                <div class="contacts_container">
+                    <div class="contacts_card ">
+                        <div class="contacts">
+                            <div class="name">
+                                <div class="name_tx ">ДЕ</div>
+                                <div class="de_color name_tx">МАЙНЕР</div>
+                            </div>
+                            <div class="contacts_txt">
+                                <div class="contacts_txt_items">
+                                    <div class="contacts_item_logo">
+                                        <img class="icon" src="{% static 'lesson_1/img/phone.png' %}" alt="">
+                                    </div>
+                                    <div class="contact_item_content">
+                                        (812) 642-05-40
+                                    </div>
+                                </div>
+                                <div class="contacts_txt_items">
+                                    <div class="contacts_item_logo">
+                                        <img class="icon" src="{% static 'lesson_1/img/mail.png' %}" alt="">
+                                    </div>
+                                    <div class="contact_item_content">
+                                        info@deminer.ru
+                                    </div>
+                                </div>
+                                <div class="contacts_txt_items">
+                                    <div class="contacts_item_logo">
+                                        <img class="icon" src="{% static 'lesson_1/img/location.png' %}" alt="">
+                                    </div>
+                                    <div class="contact_item_content">
+                                        Россия, Санкт-Петербург,
+                                        ул. Афанасьевская, д.1, лит. А, пом. 17Н
+                                    </div>
+                                </div>
+                                <div class="contacts_txt_items">
+                                    <div class="contacts_item_logo">
+                                        <img class="icon" src="{% static 'lesson_1/img/metro.png' %}" alt="">
+                                    </div>
+                                    <div class="contact_item_content">
+                                        удельная
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="back_card">
+                        <div class="name">
+                            <div class="name_tx ">ДЕ</div>
+                            <div class="de_color name_tx">МАЙНЕР</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blockmap_container">
+                    <div id="MapID" class="block_map">
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block downscript %}
+<script src="https://api-maps.yandex.ru/2.1/?apikey=1188530e-efbf-4d73-bd70-e6554e3c339f&lang=ru_RU"></script>
+<script src="{%static 'lesson_1/js/y_map.js'%}"></script>
+{% endblock downscript %}

@@ -1,0 +1,41 @@
+{% extends "lesson_1/base.html" %}
+{% load static %}
+{% block content %}
+
+
+<!--блок контент - Лицензии-->
+<div class="baground">
+    <div class="top_space"></div>
+    <div class="main_container_item">
+        <div class="top_space_txt"></div>
+        <div  class="item_html">
+            <div class="name_sec_part">
+                НАШИ ЗАКАЗЧИКИ
+            </div>
+            <div class="text_item_html">
+              те, кто нам доверяют
+            </div>
+            <div class="clients_container_main">
+                <div class="clients_container_gallery">
+                    {% for obj in clients %}
+                    <div class="client_card">
+                        <div class="client_img">
+                             <img class="client_img_img" src="{{ obj.client_img.url }}">
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock content %}
+
+
+{% block downscript %}
+{% include 'include/top_space.html' %}
+{% endblock downscript %}

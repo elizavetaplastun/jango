@@ -1,0 +1,35 @@
+{% extends "lesson_1/base.html" %}
+{% load static %}
+{% block content %}
+<div class="main_container_width">
+    <div class="gallery_high_panel">
+        <div class="name_sec_part">
+            ПРОДЕЛАННЫЕ РАБОТЫ
+        </div>
+        <div class="second_high_text">
+            с подробным описанием и фотографиями
+        </div>
+    </div>
+    <div class="gal_main_tx">
+        <div class="gal_photo_roller">
+            <div class="gal_photo_roller_line">
+                {% for p in post_list %}
+                <a href="{{ p.get_absolute_url }}" class="gal_img">
+                    <div class="gal_img_img">
+                        <img class="gal_img_img_img" src="{{ p.poster_img.url }}">
+                    </div>
+                    <div class="gal_img_tx text_style">{{ p.name }}</div>
+                </a>
+                {% endfor %}
+
+
+            </div>
+        </div>
+        {% include 'include/pagination.html' %}
+        <!--    todo: приделать классы для пагинатора -->
+        <!--            <div class="down_panel">-->
+
+
+    </div>
+</div>
+{% endblock content %}

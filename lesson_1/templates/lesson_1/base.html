@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% block title %}
+
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="{% static 'lesson_1/css/main.css'%}"/>
+<!--    <link rel="stylesheet" href="{% static 'lesson_1/css/fonts/fonts/stylessheet.css'%}"/>-->
+    <script src="{%static 'lesson_1/js/jquery-3.6.0.min.js' %} "></script>
+    <script defer src="{%static 'lesson_1/js/js.js'%}"></script>
+    {% block scripts %}
+
+    {% endblock scripts %}
+</head>
+<body class="body_cl" id="_main_id">
+
+<div class="preloader">
+    <div class="preloader-5">
+
+    </div>
+</div>
+
+{% include 'include/header.html' %}
+{% block content %}
+
+{% endblock content %}
+{% include 'include/footer.html' %}
+</body>
+
+{% block downscript %}
+
+{% endblock downscript %}
+
+</html>

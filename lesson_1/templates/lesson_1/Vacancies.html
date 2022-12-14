@@ -1,0 +1,70 @@
+{% extends "lesson_1/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="baground">
+    <div class="top_space"></div>
+    <div class="vacancies_main_container">
+        <div class="top_space_txt"></div>
+        <div class="part_local_html part_local_1">
+            {% for v in vacancies %}
+            <div class="vacancy_container">
+                <div class="vacancy">
+                    <div class="vacancy_name">
+                        {{ v.name }}
+                    </div>
+                    <div class="vacancy_text">
+                        {{ v.description|safe }}
+                    </div>
+                    <div class="botton_vacancy_part">
+                        <div class="ls3_link_container">
+                            <a  class="button_container bt_form">
+                                ОТПРАВИТЬ РЕЗЮМЕ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="part_local_html part_local_2">
+            <div class="img_item_html ">
+                <img class="img_imloding" src="{% static 'lesson_1/img/item_5.svg' %}" alt="">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="full_page_rezum">
+    <div class="rezum_win">
+        <form action="../rezumeform/" class="form_struct" name="rezumform" method="post">
+            {% csrf_token %}
+<!--            <label class="lab_vac">-->
+                <input name="name" class="field_vac" type="text" placeholder="ФИО" maxlength="100">
+<!--            </label>-->
+<!--            <label class="lab_vac">-->
+                <input name="email_phone" class="field_vac" type="text"
+                       placeholder="Email или телефон"
+                       maxlength="32"
+                       minlength="8">
+<!--            </label>-->
+<!--            <label class="lab_vac">-->
+                <input name="text" class="field_vac" type="text"
+                       placeholder="Расскажите что-нибудь о себе">
+<!--            </label>-->
+
+<!--            <label class="lab_vac">-->
+                <input name="file_rez" placeholder="Резюме" type="file">
+<!--            </label>-->
+             <button type="submit" class="bt_bt_send">Отправить</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+{% block downscript %}
+{% include 'include/top_space.html' %}
+{% endblock downscript %}

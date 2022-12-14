@@ -1,0 +1,51 @@
+{% extends "lesson_1/base.html" %}
+{% load static %}
+{% block content %}
+
+
+<!--блок контент - Лицензии-->
+<div class="baground">
+    <div class="top_space"></div>
+    <div class="main_container_item">
+        <div class="top_space_txt"></div>
+        <div class="main_text_panel">
+            <div class="name_html">НАШЕ ОБОРУДОВАНИЕ</div>
+            <div class="text_item_html">
+                Наша компания оснащена всем необходимым современным оборудованием, техникой и спецтранспортом для
+                решения поставленных задач
+            </div>
+        </div>
+        <div class="equipment_container">
+            <div class="equipment_container_cards">
+                {% for obj in equipment %}
+                <div class="equipment_card">
+                    <div class="equipment_content">
+                        <div class="text_part">
+                            <div class="vacancy_name">
+                                {{ obj.name|safe }}
+                            </div>
+                            <div class="vacancy_text">
+                                {{ obj.description|safe }}
+                            </div>
+                        </div>
+                        <div class="img_part">
+                            <img class="equipment_img_i" src="{{ obj.equipment_img.url }}">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+</div>
+
+{% endblock content %}
+
+{% block downscript %}
+{% include 'include/top_space.html' %}
+{% endblock downscript %}

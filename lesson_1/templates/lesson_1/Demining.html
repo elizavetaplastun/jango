@@ -1,0 +1,41 @@
+{% extends "lesson_1/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<!--блок контент - Лицензии-->
+<div class="top_space"></div>
+<div class="baground">
+
+    <div class="main_container_item">
+        <div id="item_1" class="item_html">
+            <div class="name_sec_part top_space_txt">
+                ОЧИСТКА МЕСТНОСТИ ОТ ВОП
+            </div>
+            <div class="txt_img_container">
+                <div class="text_item_html top_part_1">
+
+                    {{works_description.0.demining|safe }}
+
+                </div>
+                <div class="img_item_html">
+                    <div class="img_imloding">
+                    <img class="sw_img" src="{% static 'lesson_1/img/item_2.svg' %}" alt="">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% block downscript %}
+{% include 'include/top_space.html' %}
+{% endblock downscript %}
+
+
+{% endblock content %}
+

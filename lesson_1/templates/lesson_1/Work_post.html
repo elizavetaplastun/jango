@@ -1,0 +1,97 @@
+{% extends "lesson_1/base.html" %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<div class="baground">
+
+
+    <div class="post_main_flex ">
+        <div class="post_main_flex_2 _container">
+
+            <div class="post_name _postDetail_container">
+                <div class="post_name_tx">
+                    {{ Post_.name }}
+                </div>
+            </div>
+
+            <div class="wp_roller_ _postDetail_container">
+
+                <div class="slider_counter_ hid_sl_cnt">
+                    <span class="count_sl_now sl_cnt_font"></span>
+                    <span class="sl_cnt_font">/</span>
+                    <span class="count_sl_all sl_cnt_font"></span>
+                </div>
+
+                <div class="arrow arrow_prev">
+                    <img class="arrow_img bt_prev_ar bt_prev" src="{% static 'lesson_1/img/right.png'%}">
+                    <img class="fal_bt_prev" src="{% static 'lesson_1/img/right.png'%}">
+                </div>
+                <!--                слайдер-->
+                <div class="wrapper">
+                    <div class="slider_container">
+                        <div class="slider_track">
+                            <div class="wp_roller_it slider_item">
+                                <img class="wp_roller_it_img" src="{{ Post_.poster_img.url }}">
+                            </div>
+
+                            {% for image in Post_.pictures_f_posts_set.all %}
+                            <div class="wp_roller_it slider_item">
+                                <img class="wp_roller_it_img" src="{{ image.pict.url }}">
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arrow ">
+                    <img class="arrow_img bt_nxt_ar bt_nxt" src="{% static 'lesson_1/img/left.png'%}">
+                    <img class="fal_bt_nxt" src="{% static 'lesson_1/img/left.png'%}">
+                </div>
+            </div>
+
+            <div class="discr_flex _postDetail_container">
+                <div class="wp_discrip">
+                    {{ Post_.description|safe }}
+                </div>
+
+            </div>
+
+            <div class="tags_block_container _postDetail_container">
+
+                {% if Post_.place %}
+                <div class="tag_item">
+                    {{ Post_.place }}
+                </div>
+                {% endif %}
+
+                {% if Post_.date %}
+                <div class="tag_item">
+                    {{ Post_.date }}
+                </div>
+                {% endif %}
+
+                {% if Post_.work_type %}
+                <div class="tag_item">
+                    {{ Post_.work_type }}
+                </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock content %}
+
+{% block downscript %}
+{% endblock downscript %}

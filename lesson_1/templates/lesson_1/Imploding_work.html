@@ -1,0 +1,123 @@
+{% extends "lesson_1/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="_atr_anchr_scrl"></div>
+<!--блок контент - Лицензии-->
+<div class="baground">
+    <div class="top_space"></div>
+    <div class="main_container_item">
+        <div class="top_space_txt"></div>
+        <div class="main_text_panel">
+            <div class="name_html">ВЗРЫВНЫЕ РАБОТЫ</div>
+            <div class="text_item_html">
+
+                {{ works_description.0.imloding_work|safe }}
+
+            </div>
+            <div class="video_boom">
+                <div class="video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vzBdedk-ZwY"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div id="item_1" class="item_html">
+            <div class="txt_item">
+                БУРОВЗРЫВНЫЕ РАБОТЫ
+            </div>
+            <div class="txt_img_container">
+                <div class="text_item_html top_part_1">
+
+                    {{ works_description.0.br_work|safe }}
+
+                </div>
+                <div class="img_item_html ">
+                    <div class="img_imloding">
+                        <img class="sw_img_1" src="{% static 'lesson_1/img/item_3.svg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="item_2" class="item_html">
+            <div class="txt_item">
+                ВАЛКА/СНОС НАПРАВЛЕННЫМ ВЗРЫВОМ ЗДАНИЙ И СООРУЖЕНИЙ
+            </div>
+            <div class="txt_img_container">
+                <div class="text_item_html top_part_1">
+                    {{ works_description.0.demolition|safe }}
+                </div>
+                <div class="img_item_html">
+                    <div class="img_imloding">
+                        <img class="sw_img" src="{% static 'lesson_1/img/item_boom.svg' %}" alt="">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div id="item_3" class="item_html">
+            <div class="txt_item">
+                БЕЗВЗРЫВНОЕ РАЗРУШЕНИЕ СКАЛЬНЫХ ПАРОД И ЖБК
+            </div>
+            <div class="txt_img_container">
+                <div class="text_item_html top_part_1">
+
+                    {{ works_description.0.explosive_destruction|safe }}
+                </div>
+                <div class="img_item_html">
+                    <div class="img_imloding">
+                        <img class="sw_img_1" src="{% static 'lesson_1/img/item_4.svg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="item_4" class="item_html">
+            <div class="txt_item">
+                ПРОЕКТИРОВАНИЕ БВР
+            </div>
+            <div class="txt_img_container">
+                <div class="text_item_html top_part_1">
+
+                    {{ works_description.0.design|safe }}
+
+                </div>
+                <div class="img_item_html">
+                    <div class="img_imloding">
+                        <img class="sw_img" src="{% static 'lesson_1/img/item_5.svg' %}" alt="">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="item_5" class="item_html">
+            <div class="txt_item">
+                ИНЫЕ ВИДЫ ВЗРЫВНЫХ РАБОТ
+            </div>
+            <div class="txt_img_container">
+                <div class="text_item_html top_part_1">
+
+                    {{ works_description.0.else_works|safe }}
+
+                </div>
+                <div class="img_item_html">
+                    <div class="img_imloding">
+                        <img class="sw_img_1" src="{% static 'lesson_1/img/item_5.svg' %}" alt="">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock content %}
+{% block downscript %}
+{% include 'include/top_space.html' %}
+{% endblock downscript %}
